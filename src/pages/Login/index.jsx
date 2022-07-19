@@ -1,10 +1,12 @@
 import { withStyles } from "@mui/styles";
 import { Component, Fragment } from "react";
 import { styleSheet } from "./style";
-import { Typography } from "@mui/material";
+import {dividerClasses, Typography} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import CButton from "../../components/common/Button";
 import CSnackBar from "../../components/common/snackBar/insex";
+import HomePage from "../Home/home"
+import {Link} from "react-router-dom"
 
 class LoginPage extends Component {
   constructor(props) {
@@ -21,19 +23,17 @@ class LoginPage extends Component {
 
   checkLogin() {
     let formData = this.state.formData;
-    if (
-      formData.user_name === this.state.userName &&
-      formData.pass === this.state.password
-    ) {
+    if (formData.user_name === this.state.userName &&formData.pass === this.state.password) {
       this.setState({
         open: true,
-        message: "Login Sucess..!",
+        message: "Login Successes..!",
         severity: "success",
       });
+
     } else {
       this.setState({
         open: true,
-        message: "Pless Check Your Username Or Password..!",
+        message: "Pleas Check Your Username Or Password..!",
         severity: "error",
       });
     }
@@ -82,18 +82,20 @@ class LoginPage extends Component {
                 this.setState({ formData });
               }}
             />
-            <CButton
-              variant="contained"
-              label="Login"
-              onClick={() => {
-                this.checkLogin();
-              }}
-            />
+            <Link to="/home">
+              <CButton
+                  variant="contained"
+                  label="Login"
+                  onClick={() => {
+                    this.checkLogin();
+                  }}
+              />
+            </Link>
+
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default withStyles(styleSheet)(LoginPage);
